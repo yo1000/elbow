@@ -103,7 +103,7 @@ $ curl 'http://localhost:3000/elb/classic/clb1'
 
 #### Set property name as narrowing condition
 
-`/elb/application/:name?props=<PropertyName>`
+`/elb/application/:name?props=<PropertyName>`<br>
 `/elb/classic/:name?props=<PropertyName>`
 
 _Example_
@@ -120,7 +120,7 @@ $ curl 'http://localhost:3000/elb/application/alb1?props=Instances.PrivateIp'
 
 #### Get output in text format
 
-`/elb/application/:name?props=<PropertyName>&format=text`
+`/elb/application/:name?props=<PropertyName>&format=text`<br>
 `/elb/classic/:name?props=<PropertyName>&format=text`
 
 _Example_
