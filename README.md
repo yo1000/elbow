@@ -13,7 +13,7 @@ $ DEBUG=node-test:* npm start
 
 #### Look up names in ALB
 
-- `/elb/application`
+`/elb/application`
 
 _Example_
 
@@ -28,7 +28,7 @@ $ curl 'http://localhost:3000/elb/application'
 
 #### Look up overview in ALB
 
-- `/elb/application/:name`
+`/elb/application/:name`
 
 _Example_
 
@@ -58,7 +58,7 @@ $ curl 'http://localhost:3000/elb/application/alb1'
 
 #### Look up names in CLB
 
-- `/elb/classic`
+`/elb/classic`
 
 _Example_
 
@@ -73,7 +73,7 @@ $ curl 'http://localhost:3000/elb/classic'
 
 #### Look up overview in CLB
 
-- `/elb/classic/:name`
+`/elb/classic/:name`
 
 _Example_
 
@@ -103,8 +103,8 @@ $ curl 'http://localhost:3000/elb/classic/clb1'
 
 #### Set property name as narrowing condition
 
-- `/elb/application/:name?props=<PropertyName>`
-- `/elb/classic/:name?props=<PropertyName>`
+`/elb/application/:name?props=<PropertyName>`
+`/elb/classic/:name?props=<PropertyName>`
 
 _Example_
 
@@ -120,8 +120,8 @@ $ curl 'http://localhost:3000/elb/application/alb1?props=Instances.PrivateIp'
 
 #### Get output in text format
 
-- `/elb/application/:name?props=<PropertyName>&format=text`
-- `/elb/classic/:name?props=<PropertyName>&format=text`
+`/elb/application/:name?props=<PropertyName>&format=text`
+`/elb/classic/:name?props=<PropertyName>&format=text`
 
 _Example_
 
