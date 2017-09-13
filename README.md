@@ -62,7 +62,7 @@ $ curl 'http://localhost:3000/elb/application/alb1'
 
 _Example_
 
-```
+```console
 $ curl 'http://localhost:3000/elb/classic'
 [{
   "Name":"clb1"
@@ -77,7 +77,7 @@ $ curl 'http://localhost:3000/elb/classic'
 
 _Example_
 
-```
+```console
 $ curl 'http://localhost:3000/elb/classic/clb1'
 {
   "Name":"clb1",
