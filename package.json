@@ -1,0 +1,24 @@
+{
+  "name": "elbow",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.112.0",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "morgan": "~1.8.1",
+    "path": "^0.12.7",
+    "serve-favicon": "~2.4.2"
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "yo1000",
+  "license": "MIT",
+  "description": ""
+}
