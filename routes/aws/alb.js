@@ -5,7 +5,9 @@ const path = require('path');
 const appDir = `${path.dirname(require.main.filename)}/..`;
 
 const resFormat = require(`${appDir}/middlewares/response-formatter.js`);
-const awsAlb = require(`${appDir}/middlewares/aws/alb.js`);
+const awsModule = require(`${appDir}/middlewares/aws/aws.js`);
+const albModule = require(`${appDir}/middlewares/aws/alb.js`);
+const awsApi = new awsModule.Aws().api;
 
 process.on('unhandledRejection', console.dir);
 
@@ -13,7 +15,7 @@ process.on('unhandledRejection', console.dir);
 router.get('/', function(req, res) {
     (async () => {
         try {
-            res.json(await new awsAlb.Alb(AWS).describeLoadBalancerNames());
+            res.json(await new albModule.Alb(awsApi).describeLoadBalancerNames());
         } catch (err) {
             console.error("%O", err);
             res.status(400).json({"message" : err.message});
@@ -26,7 +28,7 @@ router.get('/:name', (req, res) => {
     (async () => {
         try {
             const loadBalancerName = req.params.name;
-            const loadBalancedInstances = new awsAlb.Alb(AWS)
+            const loadBalancedInstances = new albModule.Alb(awsApi)
                 .describeLoadBalancedInstances(loadBalancerName);
 
             const loadBalancer = {

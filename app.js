@@ -1,6 +1,3 @@
-AWS = require("aws-sdk");
-AWS.config.loadFromPath(".aws/credentials.json");
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

@@ -2,8 +2,9 @@
  * Application Load Balancer
  */
 class Alb {
-    constructor(AWS) {
-        this.elb2 = new AWS.ELBv2();
+    constructor(awsApi) {
+        this.ec2 = new awsApi.EC2();
+        this.elb2 = new awsApi.ELBv2();
     }
 
     /**
@@ -55,7 +56,7 @@ class Alb {
      */
     _describeInstanceIds() {
         return new Promise((resolve, reject)　=> {
-            new AWS.EC2().describeInstances({
+            this.ec2.describeInstances({
                 "MaxResults" : 1000
             }, (err, data) => {
                 if (err) {
@@ -84,7 +85,7 @@ class Alb {
     _describeLoadBalancerArn(loadBalancerName) {
         console.log("loadBalancerName: %O", loadBalancerName);
         return new Promise((resolve, reject) => {
-            new AWS.ELBv2().describeLoadBalancers({
+            this.elb2.describeLoadBalancers({
                 "Names": [loadBalancerName]
             }, (err, data) => {
                 if (err) {
@@ -107,7 +108,7 @@ class Alb {
     _describeListenerArn(loadBalancerArn) {
         console.log("loadBalancerArn: %O", loadBalancerArn);
         return new Promise((resolve, reject) => {
-            new AWS.ELBv2().describeListeners({
+            this.elb2.describeListeners({
                 "LoadBalancerArn": loadBalancerArn
             }, (err, data) => {
                 if (err) {
@@ -130,7 +131,7 @@ class Alb {
     _describeTargetGroupArn(listenerArn) {
         console.log("listenerArn: %O", listenerArn);
         return new Promise((resolve, reject) => {
-            new AWS.ELBv2().describeRules({
+            this.elb2.describeRules({
                 "ListenerArn": listenerArn
             }, (err, data) => {
                 if (err) {
@@ -155,7 +156,7 @@ class Alb {
         console.log("targetGroupArn: %O", targetGroupArn);
         console.log("instanceIds: %O", instanceIds);
         return new Promise((resolve, reject) => {
-            new AWS.ELBv2().describeTargetHealth({
+            this.elb2.describeTargetHealth({
                 "TargetGroupArn" : targetGroupArn,
                 "Targets" : instanceIds.map(id => {
                     return {"Id" : id};
@@ -184,7 +185,7 @@ class Alb {
      */
     _describeInstances(instanceIds) {
         return new Promise((resolve, reject)　=> {
-            new AWS.EC2().describeInstances({
+            this.ec2.describeInstances({
                 "Filters" : [{
                     "Name" : "instance-id",
                     "Values" : instanceIds

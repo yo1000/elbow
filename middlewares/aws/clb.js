@@ -2,8 +2,9 @@
  * Classic Load Balancer
  */
 class Clb {
-    constructor(AWS) {
-        this.elb = new AWS.ELB();
+    constructor(awsApi) {
+        this.ec2 = new awsApi.EC2();
+        this.elb = new awsApi.ELB();
     }
 
     /**
@@ -84,7 +85,7 @@ class Clb {
      */
     _describeInstances(instanceIds) {
         return new Promise((resolve, reject)　=> {
-            new AWS.EC2().describeInstances({
+            this.ec2.describeInstances({
                 "Filters" : [{
                     "Name" : "instance-id",
                     "Values" : instanceIds
